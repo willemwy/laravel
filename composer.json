@@ -4,7 +4,10 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+        "twitter/bootstrap": "dev-master",
+        "hybridauth/hybridauth": "*",
+        "barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -13,7 +16,8 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+            "app/composers"
 		]
 	},
 	"scripts": {
@@ -21,10 +25,10 @@
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
-		"post-update-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize"
-		],
+        "post-update-cmd":[
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
 		"post-create-project-cmd": [
 			"php artisan key:generate"
 		]
@@ -32,5 +36,8 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "stable",
+	"require-dev": {
+		"way/generators": "dev-master"
+	}
 }

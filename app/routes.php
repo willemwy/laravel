@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+
+Route::group(array('before' => "auth"), function() {
+    Route::get('/', "HomeController@homePage");
+    Route::post('/', "HomeController@homePagePost");
+    Route::get('/wingle', "HomeController@winglePage");
+    Route::get('/album/{albumId}', "HomeController@albumPage");
+    Route::post('/album/{albumId}', "HomeController@albumPostPage");
+    Route::get('/image/{imageId}', "HomeController@imagePage");
+    Route::any('/rate/{imageId}', "HomeController@rateImagePage");
+    Route::get('/users', "HomeController@usersPage");
 });
+Route::get('/social/{action?}', "HomeController@loginPage");

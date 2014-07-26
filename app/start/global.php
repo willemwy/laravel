@@ -16,7 +16,7 @@ ClassLoader::addDirectories(array(
 	app_path().'/commands',
 	app_path().'/controllers',
 	app_path().'/models',
-	app_path().'/database/seeds',
+	app_path().'/database/seeds'
 
 ));
 
@@ -77,5 +77,19 @@ App::down(function()
 | definitions instead of putting them all in the main routes file.
 |
 */
+$userViews = array("home", "album", "rating");
+//Users
+View::composer($userViews, function($view)
+{
+    $albums = Album::where("user_id", "=", Auth::user()->id)->get();
+    if(count($albums) == 0)
+    {
+        $view->with('albums', FALSE);
+    }
+    else
+    {
+        $view->with('albums', $albums);
+    }
+});
 
 require app_path().'/filters.php';
