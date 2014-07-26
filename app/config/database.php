@@ -50,7 +50,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'wingle',
 			'username'  => 'root',
-			'password'  => 'password',
+			'password'  => 'bou04cher05',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
