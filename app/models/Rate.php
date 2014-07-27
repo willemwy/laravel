@@ -10,4 +10,11 @@ class Rate extends Eloquent {
      * @var string
      */
     protected $table = 'rates';
+
+    public function imageHasRatingFromUser($userId, $imageId)
+    {
+        return DB::select("
+            SELECT score FROM rates WHERE user_id = $userId AND image_id = $imageId
+        ");
+    }
 }

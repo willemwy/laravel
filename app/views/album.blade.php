@@ -11,31 +11,9 @@
 
     var images = {{$images->toJson();}};
     var selectedImage = 0;
+
     function bindShit()
     {
-        $("#lounge_actions").hide();
-        $("#lounge_actions_btn").click(function(e){
-            e.preventDefault();
-
-            var a_click = $(this);
-
-            if($(this).data("active") == "0")
-            {
-                $("#lounge_actions").slideDown("slow", function(){
-                    a_click.data("active", "1");
-                });
-            }
-            else
-            {
-                $("#lounge_container").show();
-                $("#lounge_actions").slideUp("slow", function(){
-                    $("#lounge_actions").hide();
-                    a_click.data("active", "0");
-                });
-            }
-        });
-
-
         if(selectedImage == 0)
         {
             $(".previous_click").parent("li").addClass("disabled");
@@ -65,7 +43,6 @@
                             $("#message_container").show();
                             if(selectedImage == (images.length - 1))
                             {
-                                console.log("!");
                                 $(".next_click").parent("li").addClass("disabled");
                             } else
                             {
@@ -139,7 +116,7 @@
     }
 
     $(document).ready(function(){
-        bindShit();
+
         $('#focusedInput').typeahead([
             {
                 name: 'planets',
@@ -166,6 +143,48 @@
                 }
             });
         });
+
+        $("#lounge_actions").hide();
+        $("#lounge_actions_btn").click(function(e){
+            e.preventDefault();
+
+            var a_click = $(this);
+
+            if($(this).data("active") == "0")
+            {
+                $("#lounge_actions").slideDown("slow", function(){
+                    a_click.data("active", "1");
+                });
+            }
+            else
+            {
+                $("#lounge_container").show();
+                $("#lounge_actions").slideUp("slow", function(){
+                    $("#lounge_actions").hide();
+                    a_click.data("active", "0");
+                });
+            }
+        });
+
+        $.ajax({
+            url: "/image/" + images[selectedImage]["id"],
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                $("#lounge_container").html(data.html);
+                $("#message_container").show();
+
+                if(selectedImage == (images.length - 1))
+                {
+                    $(".next_click").parent("li").addClass("disabled");
+                } else
+                {
+                    $(".next_click").parent("li").removeClass("disabled");
+                }
+                bindShit();
+            }
+        });
+
     });
 </script>
 <div class="page-header">
@@ -203,7 +222,7 @@
                     </div>
                 </div>
                 <div id="lounge_container" class="panel-body">
-                    <div id="message_container" class="bs-component" style="display: none">
+                    <!-- <div id="message_container" class="bs-component" style="display: none">
                         <div class="alert alert-dismissable alert-success">
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong id="message_holder" ></strong>
@@ -226,7 +245,7 @@
                         <h3 class="text-primary">Rate It!</h3>
                     @else
                         <h3 class="text-primary">No Images for this Filter</h3>
-                    @endif
+                    @endif-->
                 </div>
             </div>
         </div>

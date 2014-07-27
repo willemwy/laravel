@@ -45,7 +45,7 @@
 
                     </li>
                     <li><a href="#">Albums</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="/profile">Profile</a></li>
                 </ul>
             </div>
         </div>

@@ -9,19 +9,20 @@
 </style>
 <script type="application/javascript">
     $(document).ready(function(){
-        $("#source-button").click(function(event){
-            event.preventDefault()
+        $("#source-button").click(function(e){
+            e.preventDefault()
             //get the action-url of the form
-            var actionurl = event.currentTarget.action;
+            var actionurl = e.currentTarget.action;
 
-            //do your own request an handle the results
+            alert("tits");
             $.ajax({
                 url: actionurl,
                 type: 'post',
                 dataType: 'json',
                 data: $("#upload").serialize(),
                 success: function(data) {
-
+                    alert("boobs");
+                    window.location = "/album/" + data.albumId;
 
                 }
             });

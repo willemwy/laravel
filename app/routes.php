@@ -21,5 +21,7 @@ Route::group(array('before' => "auth"), function() {
     Route::get('/image/{imageId}', "HomeController@imagePage");
     Route::any('/rate/{imageId}', "HomeController@rateImagePage");
     Route::get('/users', "HomeController@usersPage");
+    Route::get('/profile', "HomeController@profilePage");
+    Route::Post('/profile', "HomeController@profilePagePost");
 });
 Route::get('/social/{action?}', "HomeController@loginPage");

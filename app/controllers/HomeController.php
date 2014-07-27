@@ -73,7 +73,7 @@ class HomeController extends BaseController {
 
             $image->save();
 
-            return Response::json(array("success" => true, "albumId" => "$insertedId"));
+            return Response::json(array("success" => true, "albumId" => "$insertedId", "image" => false));
         } else {
             return Response::json(array("success" => false));
         }
@@ -108,11 +108,15 @@ class HomeController extends BaseController {
     public function imagePage($imageId)
     {
         $image = Image::findOrFail($imageId);
+        $rate = new Rate();
+        $rating = null;
+        $hasRated = $rate->imageHasRatingFromUser(Auth::user()->id, $image->id);
+
         if($image->user_id == Auth::user()->id)
         {
-            //If it is the users image, we need to calculate the rating
+            $rating = $image->getRating(Auth::user()->id, $image->id);
         }
-        return Response::json(array("html" => View::make('imagePartial', array("image" => $image))->render()));
+        return Response::json(array("html" => View::make('imagePartial', array("image" => $image, "rating" => $rating[0]->rating, "hasRated" => $hasRated))->render()));
     }
 
     public function AlbumPage($albumId)
@@ -224,4 +228,32 @@ class HomeController extends BaseController {
         }
     }
 
+    public function profilePage ()
+    {
+        return View::make('profile', array("user" => Auth::user()));
+    }
+
+    public function profilePagePost ()
+    {
+        $user = Auth::user();
+        $file = Input::file('image');
+        if($file != null)
+        {
+            $destinationPath = public_path() . '/uploads';
+            $filename =  time() . "_" . $file->getClientOriginalName() . "." . $file->getClientOriginalExtension();
+            $upload_success = $file->move($destinationPath, $filename);
+            if($upload_success)
+            {
+                $user->image = $filename;
+            }
+        }
+
+
+        $user->email = Input::all()["email"];
+        $user->name = Input::all()["name"];
+        $user->surname = Input::all()["surname"];
+
+        $user->save();
+        return Redirect::to("/profile")->with("message", "Saved!");
+    }
 }
