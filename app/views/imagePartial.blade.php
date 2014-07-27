@@ -7,8 +7,8 @@
 </div>
 <img style="margin: 0 auto;" class="img-responsive" src="{{ URL::asset('/uploads/' . $image->image) }}" />
 <ul class="pager" style="margin-bottom: -40px">
-    <li class="previous"><a class="previous_click" href="#">← Older</a></li>
-    <li class="next"><a class="next_click" href="#">Newer →</a></li>
+    <li class="previous"><a class="previous_click" href="#">← Previous</a></li>
+    <li class="next"><a class="next_click" href="#">Next →</a></li>
 </ul>
 @if($hasRated == false && !$ownImage)
 <h3 class="text-primary">Rate It!</h3>
