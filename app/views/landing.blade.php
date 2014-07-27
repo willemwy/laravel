@@ -30,6 +30,9 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <img style="max-height: 600px; padding: 56px;" src="/img/wingle_stock.jpeg" />
+            </div>
         </div>
     </div>
     <!-- /.container -->

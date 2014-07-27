@@ -28,4 +28,6 @@ Route::group(array('before' => "auth"), function() {
 });
 Route::get('/social/{action?}', "HomeController@loginPage");
 Route::get('/landing', "LandingController@landingPage");
+Route::get('/privacy', "LandingController@termsPage");
+Route::get('/conditions', "LandingController@conditionsPage");
 

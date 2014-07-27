@@ -9,4 +9,14 @@ class LandingController extends BaseController {
     {
         return View::make('landing', array());
     }
+
+    public function termsPage ()
+    {
+        return View::make('terms', array());
+    }
+
+    public function conditionsPage ()
+    {
+        return View::make('users', array());
+    }
 }

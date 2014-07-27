@@ -55,7 +55,6 @@
                             <li><a href="/profile">Profile</a></li>
                         </ul>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -63,6 +62,24 @@
     <div class="container ">
         @yield('content')
     </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li><a href="/landing">Home</a></li>
+                        <li>⋅</li>
+                        <li><a href="/privacy">Privacy</a></li>
+                        <li>⋅</li>
+                        <li><a href="/conditions">Terms & Conditions</a></li>
+                        <li>⋅</li>
+                        <li><a target="_blank" href="mailto:winglelounge@gmail.com">Contact</a></li>
+                    </ul>
+                    <p class="copyright text-center medium">Copyright © <a href="http://www.wingle.com/landing">Wingle</a> 2013. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
