@@ -190,7 +190,7 @@ class HomeController extends BaseController {
 
             //var_dump($userProfile);die();
 
-            $userEmails = User::where("email", "=", $userProfile->email)->get();
+            $userEmails = User::where("fb_id", "=", $userProfile->identifier)->get();
 
             if(count($userEmails) == 0)
             {
