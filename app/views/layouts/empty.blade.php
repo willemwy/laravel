@@ -12,10 +12,6 @@
     <script type="text/javascript" src="/js/custom.js"></script>
 </head>
 <body>
-    <div>
-        <div class="container">
             @yield('content')
-        </div>
-    </div>
 </body>
 </html>

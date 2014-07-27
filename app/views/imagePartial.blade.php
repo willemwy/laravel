@@ -5,7 +5,7 @@
     </div>
     <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
 </div>
-<img width="523" src="{{ URL::asset('/uploads/' . $image->image) }}" />
+<img class="img-responsive" src="{{ URL::asset('/uploads/' . $image->image) }}" />
 <ul class="pager" style="margin-bottom: -40px">
     <li class="previous"><a class="previous_click" href="#">← Older</a></li>
     <li class="next"><a class="next_click" href="#">Newer →</a></li>

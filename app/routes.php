@@ -24,6 +24,8 @@ Route::group(array('before' => "auth"), function() {
     Route::get('/users', "HomeController@usersPage");
     Route::get('/profile', "HomeController@profilePage");
     Route::Post('/profile', "HomeController@profilePagePost");
+    Route::get('/logout', "HomeController@logoutPage");
 });
 Route::get('/social/{action?}', "HomeController@loginPage");
-Route::get('/landing', "HomeController@landingPage");
+Route::get('/landing', "LandingController@landingPage");
+

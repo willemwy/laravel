@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="" href="/"><img style="max-height:50px; " src="/img/wl.jpg"></a>
+                <a class="" href="/"><img style="max-height:50px; " src="/img/wl.png"></a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
@@ -46,6 +46,15 @@
                     </li>
                     <li><a href="#">Albums</a></li>
                     <li><a href="/profile">Profile</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" style="padding: 0px;" data-toggle="dropdown"><img style="max-height: 50px" src="/uploads/{{$currentUser->image}}" /> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/logout">Logout</a></li>
+                            <li><a href="/profile">Profile</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

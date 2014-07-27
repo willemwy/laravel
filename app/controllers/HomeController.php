@@ -3,7 +3,7 @@
 class HomeController extends BaseController {
 
     //We use the master layout
-    protected $layout = "layouts.master";
+    public $layout = "layouts.master";
 
 	/*
 	|--------------------------------------------------------------------------
@@ -295,5 +295,17 @@ class HomeController extends BaseController {
         $albumUser->album_id = $albumId;
         $albumUser->save();
         return Response::json(array("success" => true));
+    }
+
+    public function logoutPage()
+    {
+        Auth::logout();
+        return Redirect::to("/landing");
+    }
+
+    public function landingPage ()
+    {
+        $this->layout = View::make("layouts.empty");
+        return View::make('landing', array());
     }
 }

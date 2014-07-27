@@ -82,6 +82,7 @@ $userViews = array("home", "album", "rating", "profile", "adduser");
 View::composer($userViews, function($view)
 {
     $userId = Auth::user()->id;
+    $view->with('currentUser', Auth::user());
     $albums = DB::select("
         SELECT *
         FROM albums

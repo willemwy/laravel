@@ -5862,13 +5862,13 @@ font-family: Open Sans;
 }
 
 .panel-primary {
-  border-color: #428bca;
+  border-color: #01c6d6;
 }
 
 .panel-primary > .panel-heading {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #01c6d6;
+  border-color: #01c6d6;
 }
 
 .panel-primary > .panel-heading + .panel-collapse .panel-body {
