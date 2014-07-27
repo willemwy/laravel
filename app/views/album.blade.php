@@ -49,6 +49,7 @@
                                 $(".next_click").parent("li").removeClass("disabled");
                             }
                             bindShit();
+                            $("#message_holder").html("Image was rated!");
                         }
                     });
 
@@ -81,6 +82,7 @@
                             $(".next_click").parent("li").removeClass("disabled");
                         }
                         bindShit();
+                        $( "#message_container" ).remove();
                     }
                 });
 
@@ -109,6 +111,7 @@
                             $(".previous_click").parent("li").removeClass("disabled");
                         }
                         bindShit();
+                        $( "#message_container" ).remove();
                     }
                 });
             }
@@ -162,6 +165,7 @@
                     $("#message_container").show();
 
                     bindShit();
+                    $( "#message_container" ).remove();
                 }
             });
         });
@@ -204,6 +208,7 @@
                     $(".next_click").parent("li").removeClass("disabled");
                 }
                 bindShit();
+                $( "#message_container" ).remove();
             }
         });
 

@@ -108,18 +108,32 @@ class HomeController extends BaseController {
     {
         $image = Image::findOrFail($imageId);
         $rate = new Rate();
-        $rating = FALSE;
+        $rating = false;
         $hasRated = $rate->imageHasRatingFromUser(Auth::user()->id, $image->id);
+        $ownImage = false;
 
-        if($image->user_id == Auth::user()->id)
+        if($hasRated != FALSE)
+        {
+            $hasRated = $hasRated[0]->score;
+        }
+        else if($image->user_id == Auth::user()->id)
         {
             $rating = $image->getRating(Auth::user()->id, $image->id);
-            $rating = $rating == FALSE ? 0 : $rating[0]->rating;
+            $ownImage = true;
+            if($rating[0]->rating != null)
+            {
+                $rating = $rating[0]->rating;
+            }
+            else
+            {
+                $rating = false;
+            }
         }
+
 
         return Response::json(
             array(
-                "html" => View::make('imagePartial', array("image" => $image, "rating" => $rating, "hasRated" => $hasRated)
+                "html" => View::make('imagePartial', array("image" => $image, "rating" => $rating, "hasRated" => $hasRated, "ownImage" => $ownImage)
                 )->render())
         );
     }
