@@ -114,8 +114,14 @@ class HomeController extends BaseController {
         if($image->user_id == Auth::user()->id)
         {
             $rating = $image->getRating(Auth::user()->id, $image->id);
+            $rating = $rating == FALSE ? 0 : $rating[0]->rating;
         }
-        return Response::json(array("html" => View::make('imagePartial', array("image" => $image, "rating" => $rating[0]->rating, "hasRated" => $hasRated))->render()));
+
+        return Response::json(
+            array(
+                "html" => View::make('imagePartial', array("image" => $image, "rating" => $rating, "hasRated" => $hasRated)
+                )->render())
+        );
     }
 
     public function AlbumPage($albumId)
