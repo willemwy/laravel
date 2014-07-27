@@ -1,1 +1,32 @@
-/* Add here all your CSS customizations */
+.zbtn-facebook,a.zbtn-facebook-grey,a.zbtn-facebook-large
+{
+    background-color:#3b5998;color:#fff;text-align:left;text-decoration:none;padding:4px 10px 4px 7px
+}
+.zbtn-facebook:hover,a.zbtn-facebook-grey:hover,a.zbtn-facebook-large:hover
+{
+    background-color:#4c70ba;color:#fff
+}
+a.zbtn-facebook-grey
+{
+    background-color:#999
+}
+a.zbtn-facebook-grey .ico-facebook
+{
+    margin-right:10px
+}
+a.zbtn-facebook-grey:hover
+{
+    background-color:#3b5998;color:#fff
+}
+a.zbtn-facebook-large
+{
+    padding:5px 20px;background-color:#999
+}
+a.zbtn-facebook-large .ico-facebook
+{
+    margin-right:10px
+}
+a.zbtn-facebook-large:hover
+{
+    background-color:#3b5998;color:#fff
+}

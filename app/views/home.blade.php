@@ -35,7 +35,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading" style="height: 60px;">
                     <h2 class="panel-title" style="font-size: 35px;">
-                        Create Album
+                        Create Lounge
                     </h2>
                 </div>
                 <div id="lounge_actions" class="panel-body">
