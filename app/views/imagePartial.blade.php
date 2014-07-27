@@ -10,7 +10,7 @@
     <li class="previous"><a class="previous_click" href="#">← Older</a></li>
     <li class="next"><a class="next_click" href="#">Newer →</a></li>
 </ul>
-@if($rating != null)
+@if($rating != null && $rating != FALSE)
 <img src="/img/star.png" /><div style="margin-top: -44px; margin-bottom: 44px;"><strong>{{round($rating, 1)}}</strong></div>
 @elseif(!empty($hasRated))
 <div class="btn-group" style="text-align: center">
@@ -19,6 +19,8 @@
     <button disabled="disabled" type="button" data-url="/rate/{{$image->id}}?rating={{$i}}" class="btn btn-default btn-lg rate-button @if($hasRated == $i) active @endif">{{$i}}</button>
     @endfor
 </div>
+@elseif($rating == false)
+<h3 class="text-primary">Rating Pending</h3>
 @else
 <h3 class="text-primary">Rate It!</h3>
 <div class="btn-group" style="text-align: center">

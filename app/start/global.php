@@ -77,11 +77,16 @@ App::down(function()
 | definitions instead of putting them all in the main routes file.
 |
 */
-$userViews = array("home", "album", "rating", "profile");
+$userViews = array("home", "album", "rating", "profile", "adduser");
 //Users
 View::composer($userViews, function($view)
 {
-    $albums = Album::where("user_id", "=", Auth::user()->id)->get();
+    $userId = Auth::user()->id;
+    $albums = DB::select("
+        SELECT *
+        FROM albums
+        WHERE user_id = $userId OR id IN (SELECT album_id FROM user_album WHERE user_id = $userId)
+    ");
 
     if(count($albums) == 0)
     {

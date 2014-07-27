@@ -117,6 +117,28 @@
 
     $(document).ready(function(){
 
+        $(".addUser").click(function(e){
+            e.preventDefault();
+            var $click = $(this);
+            var actionurl = $(this).attr('href');
+            $.ajax({
+                url: actionurl,
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    $click.remove();
+                }
+            });
+        });
+        $('#box').keyup(function(){
+            var valThis = $(this).val().toLowerCase();
+            $('.navList>a').each(function(){
+                var text = $(this).text().toLowerCase();
+                (text.indexOf(valThis) == 0) ? $(this).show() : $(this).hide();
+            });
+        });
+
+
         $('#focusedInput').typeahead([
             {
                 name: 'planets',
@@ -222,52 +244,9 @@
                     </div>
                 </div>
                 <div id="lounge_container" class="panel-body">
-                    <!-- <div id="message_container" class="bs-component" style="display: none">
-                        <div class="alert alert-dismissable alert-success">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong id="message_holder" ></strong>
-                        </div>
-                        <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
-                    </div>
-                    @if(count($images) != 0)
-                        <img width="523" src="{{ URL::asset('/uploads/' . $images[0]->image) }}" />
-                        <ul class="pager" style="margin-bottom: -40px">
-                            <li class="previous"><a class="previous_click" href="#">← Older</a></li>
-                            <li class="next"><a class="next_click" href="#">Newer →</a></li>
-                        </ul>
-                        <div class="btn-group" style="text-align: center">
-                            <button data-url="/rate/{{$images[0]->id}}?rating=1" type="button" class="rate-button btn btn-default btn-lg">1</button>
-                            <button data-url="/rate/{{$images[0]->id}}?rating=2" type="button" class="rate-button btn btn-default btn-lg">2</button>
-                            <button data-url="/rate/{{$images[0]->id}}?rating=3" type="button" class="rate-button btn btn-default btn-lg">3</button>
-                            <button data-url="/rate/{{$images[0]->id}}?rating=4" type="button" class="rate-button btn btn-default btn-lg">4</button>
-                            <button data-url="/rate/{{$images[0]->id}}?rating=5" type="button" class="rate-button btn btn-default btn-lg">5</button>
-                        </div>
-                        <h3 class="text-primary">Rate It!</h3>
-                    @else
-                        <h3 class="text-primary">No Images for this Filter</h3>
-                    @endif-->
                 </div>
             </div>
         </div>
-
-        <div class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body…</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="col-lg-4 text-center">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -300,10 +279,21 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Friends</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <input class="form-control" id="focusedInput" type="text" value="" placeholder="Friends...">
+                                <div class="row modal-body">
+                                    <input placeholder="Search Me" id="box" type="text" />
+                                    <div class="list-group navList">
+                                        @foreach($users AS $user)
+                                            @if($user->id == $currentUser->id)
+
+                                            @elseif(!in_array($user->id, $inGroup))
+                                                <a href="/adduser/{{$album->id}}?userId={{$user->id}}" class="list-group-item addUser">{{$user->name}} {{$user->surname}}</a>
+                                            @else
+                                                {{$user->name}} {{$user->surname}} (Invited)
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

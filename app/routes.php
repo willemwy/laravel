@@ -13,6 +13,7 @@
 
 
 Route::group(array('before' => "auth"), function() {
+    Route::get('/adduser/{albumId}', "HomeController@addUserPage");
     Route::get('/', "HomeController@homePage");
     Route::post('/', "HomeController@homePagePost");
     Route::get('/wingle', "HomeController@winglePage");

@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="" href="#"><img style="max-height:50px; " src="/img/wl.jpg"></a>
+                <a class="" href="/"><img style="max-height:50px; " src="/img/wl.jpg"></a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">

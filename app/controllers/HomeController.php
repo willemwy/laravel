@@ -39,7 +39,6 @@ class HomeController extends BaseController {
 
 	public function homePage()
 	{
-        $albums = Album::where("user_id", "=", Auth::user()->id)->get();
 		return View::make('home');
 	}
 
@@ -109,7 +108,7 @@ class HomeController extends BaseController {
     {
         $image = Image::findOrFail($imageId);
         $rate = new Rate();
-        $rating = null;
+        $rating = FALSE;
         $hasRated = $rate->imageHasRatingFromUser(Auth::user()->id, $image->id);
 
         if($image->user_id == Auth::user()->id)
@@ -159,8 +158,14 @@ class HomeController extends BaseController {
         }
 
         $images = $imageModel->get();
-        $users = User::all(array("name", "email"));
-        return View::make('album', array("album" => $album, "images" => $images, "filters" => $filters, "users" => $users));
+        $users = User::all();
+        $inGroup = DB::select("SELECT user_id FROM user_album WHERE album_id = $albumId");
+        $arrInGroup = array();
+        foreach($inGroup as $userInGroup)
+        {
+            $arrInGroup[] = $userInGroup->user_id;
+        }
+        return View::make('album', array("album" => $album, "images" => $images, "filters" => $filters, "users" => $users, "inGroup" => $arrInGroup, "currentUser" => Auth::user()));
     }
 
     public function LoginPage($action = "")
@@ -255,5 +260,15 @@ class HomeController extends BaseController {
 
         $user->save();
         return Redirect::to("/profile")->with("message", "Saved!");
+    }
+
+    public function addUserPage($albumId)
+    {
+        $userId = Input::get("userId");
+        $albumUser = new UserAlbum();
+        $albumUser->user_id = $userId;
+        $albumUser->album_id = $albumId;
+        $albumUser->save();
+        return Response::json(array("success" => true));
     }
 }
