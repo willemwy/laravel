@@ -118,7 +118,7 @@ class HomeController extends BaseController {
         }
         else if($image->user_id == Auth::user()->id)
         {
-            $rating = $image->getRating(Auth::user()->id, $image->id);
+            $rating = $image->getRating($image->id);
             $ownImage = true;
             if($rating[0]->rating != null)
             {

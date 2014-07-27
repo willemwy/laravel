@@ -10,7 +10,7 @@
     <li class="previous"><a class="previous_click" href="#">← Older</a></li>
     <li class="next"><a class="next_click" href="#">Newer →</a></li>
 </ul>
-@if($rating == false && $hasRated == FALSE && !$ownImage)
+@if($hasRated == false && !$ownImage)
 <h3 class="text-primary">Rate It!</h3>
 <div class="btn-group" style="text-align: center">
     <button type="button" data-url="/rate/{{$image->id}}?rating=1" class="btn btn-default btn-lg rate-button">1</button>

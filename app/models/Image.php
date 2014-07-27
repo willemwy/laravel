@@ -11,12 +11,12 @@ class Image extends Eloquent {
      */
     protected $table = 'images';
 
-    public function getRating($userId, $imageId)
+    public function getRating($imageId)
     {
         return DB::select("
             SELECT (SUM(score) / COUNT(id)) AS rating
             FROM rates
-            WHERE user_id = $userId AND image_id = $imageId
+            WHERE image_id = $imageId
         ");
     }
 }
