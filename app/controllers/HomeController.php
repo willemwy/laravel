@@ -177,6 +177,9 @@ class HomeController extends BaseController {
                     $imageModel->orderBy("created_at", 'desc');
                     break;
             }
+        } else
+        {
+            $imageModel->orderBy("created_at", 'desc');
         }
 
         $images = $imageModel->get();
