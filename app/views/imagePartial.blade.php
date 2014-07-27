@@ -25,7 +25,8 @@
     @for($i = 1; $i < 6; $i++)
     <button disabled="disabled" @if($hasRated == $i) style='background-color: bisque;' @endif type="button" data-url="/rate/{{$image->id}}?rating={{$i}}" class="btn btn-default btn-lg rate-button">{{$i}}</button>
     @endfor
-</div>
+</div><br><br>
+<img src="/img/star.png" /><div style="margin-top: -44px; margin-bottom: 44px;"><strong>{{round($rating, 1)}}</strong></div>
 @elseif($rating == false && $ownImage)
 <h3 class="text-primary">Rating Pending</h3>
 @else

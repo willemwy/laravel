@@ -116,18 +116,20 @@ class HomeController extends BaseController {
         {
             $hasRated = $hasRated[0]->score;
         }
-        else if($image->user_id == Auth::user()->id)
+
+        if($image->user_id == Auth::user()->id)
         {
-            $rating = $image->getRating($image->id);
             $ownImage = true;
-            if($rating[0]->rating != null)
-            {
-                $rating = $rating[0]->rating;
-            }
-            else
-            {
-                $rating = false;
-            }
+        }
+
+        $rating = $image->getRating($image->id);
+        if($rating[0]->rating != null)
+        {
+            $rating = $rating[0]->rating;
+        }
+        else
+        {
+            $rating = false;
         }
 
 
