@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/custom.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/style_old.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <script type="text/javascript" src="/packages/bootstrap/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/packages/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/jquery.knob.js"></script>
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
     <script type="text/javascript" src="/js/typeahead.js"></script>
     <script type="text/javascript" src="/js/custom.js"></script>
+
 </head>
 <body>
 <div class="">

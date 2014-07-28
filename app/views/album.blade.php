@@ -285,16 +285,18 @@
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                                     <h4 class="modal-title" id="myModalLabel">Friends</h4>
                                 </div>
-                                <div class="row modal-body">
-                                    <input placeholder="Search Me" id="box" type="text" />
+                                <div class="modal-body">
+                                    <form class="navbar-form">
+                                        <input placeholder="Search Friends..." id="box" type="text" class="form-control" />
+                                    </form>
                                     <div class="list-group navList">
                                         @foreach($users AS $user)
                                             @if($user->id == $currentUser->id)
 
                                             @elseif(!in_array($user->id, $inGroup))
-                                                <a href="/adduser/{{$album->id}}?userId={{$user->id}}" class="list-group-item addUser">{{$user->name}} {{$user->surname}}</a>
+                                                <a href="/adduser/{{$album->id}}?userId={{$user->id}}" class="list-group-item addUser"><strong>{{$user->name}} {{$user->surname}}</strong></a>
                                             @else
-                                                {{$user->name}} {{$user->surname}} (Invited)
+                                                <a style="color: white; background-color: #01c6d6;" href="" onclick="function(e){e.preventDefault}" class="list-group-item addUser"><strong>{{$user->name}} {{$user->surname}} <span style="float: right;" class="glyphicon glyphicon-ok"></span></strong></a>
                                             @endif
                                         @endforeach
                                     </div>
