@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Wingle | The Rating App that keeps you Cool. Always</title>
+    <title>Wingle | The image Rating App that keeps things fun. Always.</title>
     <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
