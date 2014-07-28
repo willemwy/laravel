@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="top-message">
-                    <h1>wingle. <br>Have Fun</h1>
+                    <h1>wingle. <br>Have Fun.</h1>
                     <h3>The Rating App that keeps you Cool. Always.</h3>
                     <hr class="top-divider">
                     <br>
