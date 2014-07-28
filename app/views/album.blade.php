@@ -276,7 +276,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <a data-toggle="modal" data-target="#myModal" class="btn btn-primary">Invite Friends</a>
+                    <a data-toggle="modal" data-target="#myModal" class="btn btn-primary">Friends</a>
                     <a href="#">Delete Friend</a>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">

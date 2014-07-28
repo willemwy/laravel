@@ -5,7 +5,7 @@ body, html {
 }
 
 body, h1, h2, h3, h4, h5, h6 {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
 	font-weight: 200;
 }
 
@@ -19,7 +19,7 @@ body {font-weight:600;}
 p {
 	color:#656565;
 	font-weight:400;
-	font-family:Open sans;
+	font-family:'Lucida Grande', Verdana, Arial, sans-serif;
 }
 
 /* Header */
@@ -390,7 +390,7 @@ i.service-icon {
 }
 
 .panel-body {
-	font-family:Open sans;
+	font-family:'Lucida Grande', Verdana, Arial, sans-serif;
 	font-size:13px;
 	line-height:23px;
 	font-weight:400;
@@ -436,7 +436,7 @@ i.service-icon {
 	height: 41px;
 	border-radius: 6px;
 	padding: 0px 15px;
-	font-family: Open Sans;
+	font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
 	font-weight: 600;
 	position: relative;
 	top: 2px;
@@ -446,7 +446,7 @@ i.service-icon {
 	margin: 10px;
 	text-transform:uppercase;
 	font-weight:bold;
-	font-family:open sans;
+	font-family:'Lucida Grande', Verdana, Arial, sans-serif;
 	font-size:14px;
 	padding:10px 25px;
 }
@@ -491,7 +491,7 @@ i.service-icon {
 	float: left;
 	margin-right: 50px;
 	font-size: 28px;
-	font-family: Open sans;
+	font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
 	margin-top: 5px;
 	letter-spacing: -1px;
 }
