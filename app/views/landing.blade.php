@@ -21,7 +21,7 @@
             <div class="col-lg-6">
                 <div class="top-message">
                     <h1>wingle. <br>Have Fun.</h1>
-                    <h3>The Rating App that keeps you Cool. Always.</h3>
+                    <h3>The image Rating App that keeps things fun. Always.</h3>
                     <hr class="top-divider">
                     <br>
                     <p>Ever wondered how that new dress looks? Or that photo from last night? Well, now your friends can rate your photos!</p>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <img style="max-height: 600px; padding: 56px;" src="/img/wingle_stock.jpeg" />
+                <img style="max-height: 600px; padding: 56px;" class="img-responsive" src="/img/wingle_stock.jpeg" />
             </div>
         </div>
     </div>

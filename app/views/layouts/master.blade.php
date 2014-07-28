@@ -51,7 +51,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" style="padding: 0px;" data-toggle="dropdown">{{$currentUser->name}}  <img style="max-height: 50px" src="/uploads/{{$currentUser->image}}" /> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$currentUser->name}} {{$currentUser->surname}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
                             <li><a href="/logout">Logout</a></li>
