@@ -21,9 +21,7 @@
                 dataType: 'json',
                 data: $("#upload").serialize(),
                 success: function(data) {
-                    alert("boobs");
                     window.location = "/album/" + data.albumId;
-
                 }
             });
         });
@@ -40,7 +38,7 @@
                 </div>
                 <div id="lounge_actions" class="panel-body">
                     <div class="well bs-component">
-                        <form action="/" id="upload" class="form-horizontal">
+                        <form action="/create-lounge" id="upload" class="form-horizontal">
                             <fieldset>
                                 <div class="form-group ">
                                     <div class="col-lg-12">

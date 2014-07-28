@@ -26,7 +26,7 @@
                     <br>
                     <p>Ever wondered how that new dress looks? Or that photo from last night? Well, now your friends can rate your photos!</p>
                     <ul class="list-inline top-buttons">
-                        <li><a href="#" class="btn btn-lg btn-primary"><i class="fa fa-facebook-square"></i> Login With Facebook</a></li>
+                        <li><a href="/social" class="btn btn-lg btn-primary"><i class="fa fa-facebook-square"></i> Login With Facebook</a></li>
                     </ul>
                 </div>
             </div>

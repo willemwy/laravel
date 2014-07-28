@@ -14,8 +14,8 @@
 
 Route::group(array('before' => "auth"), function() {
     Route::get('/adduser/{albumId}', "HomeController@addUserPage");
-    Route::get('/', "HomeController@homePage");
-    Route::post('/', "HomeController@homePagePost");
+    Route::get('/create-lounge', "HomeController@homePage");
+    Route::post('/create-lounge', "HomeController@homePagePost");
     Route::get('/wingle', "HomeController@winglePage");
     Route::get('/album/{albumId}', "HomeController@albumPage");
     Route::post('/album/{albumId}', "HomeController@albumPostPage");
@@ -27,7 +27,7 @@ Route::group(array('before' => "auth"), function() {
     Route::get('/logout', "HomeController@logoutPage");
 });
 Route::get('/social/{action?}', "HomeController@loginPage");
-Route::get('/landing', "LandingController@landingPage");
+Route::get('/', "LandingController@landingPage");
 Route::get('/privacy', "LandingController@termsPage");
 Route::get('/conditions', "LandingController@conditionsPage");
 

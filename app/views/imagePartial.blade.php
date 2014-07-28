@@ -6,6 +6,10 @@
     <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
 </div>
 <img style="margin: 0 auto;" class="img-responsive" src="{{ URL::asset('/uploads/' . $image->image) }}" />
+<br>
+<div class="well well-sm">
+    <strong>{{$image->name}}</strong>
+</div>
 <ul class="pager" style="margin-bottom: -40px">
     <li class="previous"><a class="previous_click" href="#">← Previous</a></li>
     <li class="next"><a class="next_click" href="#">Next →</a></li>

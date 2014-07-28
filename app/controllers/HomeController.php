@@ -239,18 +239,28 @@ class HomeController extends BaseController {
 
                 $user->image = "$userProfile->identifier.jpg";
                 $user->save();
+
+                Auth::login($user);
+
+                $userCookie = Cookie::make("user", serialize($user), 3600);
+                //Redirect to home page
+                return Redirect::to("/")->withCookie($userCookie);
             }
             else
             {
                 $user = $userEmails[0];
+                Auth::login($user);
+
+                $userCookie = Cookie::make("user", serialize($user), 3600);
+                //Redirect to home page
+                $albums = Album::where("user_id", "=", $user->id)->get();
+
+                if(!empty($albums))
+                {
+                    return Redirect::to("/album/" . $albums[0]->id)->withCookie($userCookie);
+                }
+                return Redirect::to("/")->withCookie($userCookie);
             }
-
-
-            Auth::login($user);
-
-            $userCookie = Cookie::make("user", serialize($user), 3600);
-            //Redirect to home page
-            return Redirect::to("/")->withCookie($userCookie);
         }
         catch(Exception $e) {
             // exception codes can be found on HybBridAuth's web site
@@ -280,8 +290,8 @@ class HomeController extends BaseController {
 
 
         $user->email = Input::all()["email"];
-        $user->name = Input::all()["name"];
-        $user->surname = Input::all()["surname"];
+        $user->name = addcslashes(Input::all()["name"], '"');
+        $user->surname = addcslashes(Input::all()["surname"], '"');
 
         $user->save();
         return Redirect::to("/profile")->with("message", "Saved!");

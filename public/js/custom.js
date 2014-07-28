@@ -53,13 +53,7 @@ $(function(){
                     }
                     else if(result.success == true && result.image == true)
                     {
-                        $("#message_holder").html("Added image!");
-                        $("#message_container").show();
-                        $("#lounge_actions").hide();
-                    }
-                    else
-                    {
-                        alert("Whoops");
+                        location.reload();
                     }
                 });
         },
