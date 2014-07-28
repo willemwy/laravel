@@ -48,8 +48,6 @@
 
                     </li>
                     <li><a href="/create-lounge">Add a Lounge</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$currentUser->name}} {{$currentUser->surname}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
