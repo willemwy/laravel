@@ -40,13 +40,8 @@
                     <li><a href="#" class="dropdown-toggle" disabled="disabled" data-toggle="dropdown">No Lounges</a></li>
                         @endif
                     <li><a href="/create-lounge">Add a Lounge</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$currentUser->name}} {{$currentUser->surname}}<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="/logout">Logout</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
