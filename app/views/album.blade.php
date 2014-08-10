@@ -216,16 +216,20 @@
             }
         });
 
+        $(".toInvite").each(function(index, element){
+            $(element).parent().hide();
+        });
+
         $('#textSearch').keyup(function() {
             searchTerm = $(this).val();
             $(".textToFilter").each(function(index, element){
                 if($(element).text().indexOf(searchTerm) == -1)
                 {
-                    $(element).hide();
+                    $(element).parent().hide();
                 }
                 else
                 {
-                    $(element).show();
+                    $(element).parent().show();
                 }
             });
         });
@@ -334,7 +338,7 @@
                                 </div>
                                 @elseif(!in_array($user->id, $inGroup) )
                                     <div class="col-xs-6 col-md-4">
-                                        <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" class="textToFilter thumbnail addUser">
+                                        <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" class="textToFilter thumbnail addUser toInvite">
                                             <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
                                             {{$user->name}} {{$user->surname}}<br>Add
                                         </a>
@@ -350,7 +354,7 @@
                             @endif
                         @endforeach
                     </div>
-                    @if($ownsLounge)<a href="/remove_album/{{$album->id}}" >Delete Lounge</a>@endif
+                    @if($ownsLounge)<a href="/remove_album/{{$album->id}}" >Delete Lounge</a>@else<a href="/remove_user?user_id={{$currentUser->id}}&album_id={{$album->id}}&redirect=1" >Leave Lounge</a>@endif
                 </div>
             </div>
         </div>

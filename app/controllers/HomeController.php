@@ -367,7 +367,13 @@ class HomeController extends BaseController {
         //var_dump($albumUser); die();
         $albumUser->removed = 1;
         $albumUser->save();
-        return Response::json(array("success" => true));
+        if(Input::get("redirect") == 1)
+        {
+            return Redirect::to("/create-lounge");
+        }else
+        {
+            return Response::json(array("success" => true));
+        }
 
     }
 
