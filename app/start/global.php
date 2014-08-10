@@ -86,7 +86,7 @@ View::composer($userViews, function($view)
     $albums = DB::select("
         SELECT *
         FROM albums
-        WHERE user_id = $userId OR id IN (SELECT album_id FROM user_album WHERE user_id = $userId)
+        WHERE (removed != 1 AND user_id = $userId) OR id IN (SELECT album_id FROM user_album WHERE user_id = $userId)
     ");
 
     if(count($albums) == 0)

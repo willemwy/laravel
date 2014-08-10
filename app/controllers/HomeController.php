@@ -142,6 +142,7 @@ class HomeController extends BaseController {
 
     public function AlbumPage($albumId)
     {
+        $showLounges = Input::get("showLounges");
 
         $filters = array(
             "newToOld" => "Newest to Oldest",
@@ -149,7 +150,16 @@ class HomeController extends BaseController {
             "myUploads" => "My Images",
             "toBeRated" => "I need to Rate"
         );
-        $album = Album::findOrFail($albumId);
+
+        try
+        {
+            $album = Album::where("removed", "!=", "1")->findOrFail($albumId);
+        }
+        catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e)
+        {
+            return Redirect::to('/create-lounge');
+        }
+
         $imageModel = Image::where("album_id", "=", $albumId);
 
         if(Input::get("filter") != FALSE)
@@ -184,13 +194,15 @@ class HomeController extends BaseController {
 
         $images = $imageModel->get();
         $users = User::all();
-        $inGroup = DB::select("SELECT user_id FROM user_album WHERE album_id = $albumId");
+        $inGroup = DB::select("SELECT user_id FROM user_album WHERE album_id = $albumId AND removed != 1");
         $arrInGroup = array();
+
         foreach($inGroup as $userInGroup)
         {
             $arrInGroup[] = $userInGroup->user_id;
         }
-        return View::make('album', array("album" => $album, "images" => $images, "filters" => $filters, "users" => $users, "inGroup" => $arrInGroup, "currentUser" => Auth::user()));
+        $ownsLounge = Auth::user()->id == $album->user_id ? true : false;
+        return View::make('album', array("showLounges" => $showLounges, "ownsLounge" => $ownsLounge, "album" => $album, "images" => $images, "filters" => $filters, "users" => $users, "inGroup" => $arrInGroup, "currentUser" => Auth::user()));
     }
 
     public function LoginPage($action = "")
@@ -259,12 +271,11 @@ class HomeController extends BaseController {
                 {
                     return Redirect::to("/album/" . $albums[0]->id)->withCookie($userCookie);
                 }
-                return Redirect::to("/")->withCookie($userCookie);
+                return Redirect::to("/create-lounge")->withCookie($userCookie);
             }
         }
         catch(Exception $e) {
-            // exception codes can be found on HybBridAuth's web site
-            return $e->getMessage();
+            return Redirect::to('/social');
         }
     }
 
@@ -310,7 +321,7 @@ class HomeController extends BaseController {
     public function logoutPage()
     {
         Auth::logout();
-        return Redirect::to("/landing");
+        return Redirect::to("/");
     }
 
     public function landingPage ()
@@ -318,4 +329,32 @@ class HomeController extends BaseController {
         $this->layout = View::make("layouts.empty");
         return View::make('landing', array());
     }
+
+    public function removeUser ()
+    {
+        $userId = Input::get("user_id");
+        $albumId = Input::get("album_id");
+
+        if(empty($userId) || empty($albumId))
+        {
+            return Redirect::to("/");
+        }
+
+        $albumUser = UserAlbum::where("user_id", "=", $userId)->where("album_id", "=", $albumId)->firstOrFail();
+        //var_dump($albumUser); die();
+        $albumUser->removed = 1;
+        $albumUser->save();
+        return Response::json(array("success" => true));
+
+    }
+
+    public function removeAlbum ($albumId)
+    {
+        $album = Album::findOrFail($albumId);
+        $album->removed = 1;
+        $album->save();
+        return Redirect::to("/create-lounge");
+
+    }
+
 }

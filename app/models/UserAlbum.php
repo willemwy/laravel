@@ -2,7 +2,7 @@
 
 class UserAlbum extends Eloquent {
 
-    protected $fillable = array('id', 'user_id', "album_id");
+    protected $fillable = array('id', 'user_id', "album_id", "removed");
 
     /**
      * The database table used by the model.

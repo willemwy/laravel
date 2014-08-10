@@ -34,19 +34,11 @@
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        @if($albums !== FALSE)
-                        <a href="#" class="dropdown-toggle" disabled="disabled" data-toggle="dropdown">My Lounges<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            @foreach($albums as $album)
-                                <li><a href="/album/{{$album->id}}">{{$album->name}}</a></li>
-                            @endforeach
-                        </ul>
-                        @else
-                            <a href="#" class="dropdown-toggle" disabled="disabled" data-toggle="dropdown">No Lounges</a>
+                    @if($albums !== FALSE)
+                        <li><a href="/album/{{$albums[0]->id}}?showLounges=1">View Lounges</a></li>
+                    @else
+                    <li><a href="#" class="dropdown-toggle" disabled="disabled" data-toggle="dropdown">No Lounges</a></li>
                         @endif
-
-                    </li>
                     <li><a href="/create-lounge">Add a Lounge</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$currentUser->name}} {{$currentUser->surname}}<b class="caret"></b></a>

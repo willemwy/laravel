@@ -119,6 +119,11 @@
 
     $(document).ready(function(){
 
+        if($.trim($("#friendsToInvite").html()) == "")
+        {
+            $("#friendsToInvite").html("There are no friends to invite");
+        }
+
         $(".addUser").click(function(e){
             e.preventDefault();
             var $click = $(this);
@@ -128,10 +133,25 @@
                 type: 'get',
                 dataType: 'json',
                 success: function(data) {
-                    $click.remove();
+                    location.reload();
                 }
             });
         });
+
+        $(".removeUser").click(function(e){
+            e.preventDefault();
+            var $click = $(this);
+            var actionurl = $(this).attr('href');
+            $.ajax({
+                url: actionurl,
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    location.reload();
+                }
+            });
+        });
+
         $('#box').keyup(function(){
             var valThis = $(this).val().toLowerCase();
             $('.navList>a').each(function(){
@@ -215,6 +235,29 @@
 </script>
 <div class="page-header">
     <div class="row">
+        @if($showLounges != false && $albums != false)
+            <div class="col-lg-8 text-center">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="height: 60px;">
+                        <h2 class="panel-title" style="font-size: 35px;">
+                            Lounges
+                        </h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            @foreach($albums AS $album)
+                            <div class="col-xs-6 col-md-4">
+                                <a style="overflow: hidden;" href="/album/{{$album->id}}" title="View {{$album->name}}" class="thumbnail">
+                                    <img style="height: 60px; width: 60px" src="/uploads/{{$album->image}}" data-src="holder.js/100%x180" alt="...">
+                                    {{$album->name}}
+                                </a>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="col-lg-8 text-center">
             <div class="panel panel-primary">
                 <div class="panel-heading" style="height: 60px;">
@@ -276,36 +319,39 @@
                         </div>
                         @endforeach
                     </div>
-                    <a data-toggle="modal" data-target="#myModal" class="btn btn-primary">Friends</a>
-                    <a href="#">Delete Friend</a>
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Friends</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="navbar-form">
-                                        <input placeholder="Search Friends..." id="box" type="text" class="form-control" />
-                                    </form>
-                                    <div class="list-group navList">
-                                        @foreach($users AS $user)
-                                            @if($user->id == $currentUser->id)
-
-                                            @elseif(!in_array($user->id, $inGroup))
-                                                <a href="/adduser/{{$album->id}}?userId={{$user->id}}" class="list-group-item addUser"><strong>{{$user->name}} {{$user->surname}}</strong></a>
-                                            @else
-                                                <a style="color: white; background-color: #01c6d6;" href="" onclick="function(e){e.preventDefault}" class="list-group-item addUser"><strong>{{$user->name}} {{$user->surname}} <span style="float: right;" class="glyphicon glyphicon-ok"></span></strong></a>
-                                            @endif
-                                        @endforeach
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Friends in Lounge</strong><br>@if($ownsLounge)<a href="/remove_album/{{$album->id}}" >Delete Lounge</a>@endif</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        @foreach($users AS $user)
+                            @if($user->id != $currentUser->id)
+                                @if($ownsLounge)
+                                    @if(in_array($user->id, $inGroup))
+                                    <div class="col-xs-6 col-md-4">
+                                        <a style="overflow: hidden;" href="/remove_user?user_id={{$user->id}}&album_id={{$album->id}}" title="{{$user->name}} {{$user->surname}} " data-current="0" class="removeUser thumbnail">
+                                            <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
+                                            {{$user->name}} {{$user->surname}} <br>Remove
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
+                                    @else
+                                        <div class="col-xs-6 col-md-4">
+                                            <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" onclick="function(e){e.preventDefault}" class="thumbnail addUser">
+                                                <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
+                                                {{$user->name}} {{$user->surname}} <br>Add
+                                            </a>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="col-xs-6 col-md-4">
+                                        <a style="overflow: hidden;" class="thumbnail"><img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="..."></a>
+                                    </div>
+                                @endif
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
