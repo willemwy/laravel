@@ -168,6 +168,7 @@ class HomeController extends BaseController {
 
     public function AlbumPage($albumId)
     {
+        //sleep(20);
         $showLounges = Input::get("showLounges");
 
         $filters = array(

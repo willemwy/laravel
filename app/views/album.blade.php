@@ -128,6 +128,7 @@
             e.preventDefault();
             var $click = $(this);
             var actionurl = $(this).attr('href');
+            console.log(actionurl);
             $.ajax({
                 url: actionurl,
                 type: 'get',
@@ -324,26 +325,25 @@
                     <div class="row">
                         @foreach($users AS $user)
                             @if($user->id != $currentUser->id)
-                                @if($ownsLounge)
-                                    @if(in_array($user->id, $inGroup))
+                                @if(in_array($user->id, $inGroup) && $ownsLounge)
+                                <div class="col-xs-6 col-md-4">
+                                    <a style="overflow: hidden;" href="/remove_user?user_id={{$user->id}}&album_id={{$album->id}}" title="{{$user->name}} {{$user->surname}} " data-current="0" class="textToFilter removeUser thumbnail">
+                                        <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
+                                        {{$user->name}} {{$user->surname}}<br>Remove
+                                    </a>
+                                </div>
+                                @elseif(!in_array($user->id, $inGroup) )
                                     <div class="col-xs-6 col-md-4">
-                                        <a style="overflow: hidden;" href="/remove_user?user_id={{$user->id}}&album_id={{$album->id}}" title="{{$user->name}} {{$user->surname}} " data-current="0" class="textToFilter removeUser thumbnail">
+                                        <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" class="textToFilter thumbnail addUser">
                                             <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
-                                            {{$user->name}} {{$user->surname}}<br>Remove
+                                            {{$user->name}} {{$user->surname}}<br>Add
                                         </a>
                                     </div>
-                                    @else
-                                        <div class="col-xs-6 col-md-4">
-                                            <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" onclick="function(e){e.preventDefault}" class="textToFilter thumbnail addUser">
-                                                <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
-                                                {{$user->name}} {{$user->surname}}<br>Add
-                                            </a>
-                                        </div>
-                                    @endif
                                 @else
                                     <div class="col-xs-6 col-md-4">
-                                        <a style="overflow: hidden;" class="thumbnail textToFilter"><img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
-                                           {{$user->name}} {{$user->surname}}
+                                        <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" class="textToFilter thumbnail">
+                                            <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
+                                            {{$user->name}} {{$user->surname}}<br>
                                         </a>
                                     </div>
                                 @endif
