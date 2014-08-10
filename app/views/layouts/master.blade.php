@@ -13,10 +13,6 @@
     <script type="text/javascript" src="/packages/bootstrap/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/packages/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/jquery.knob.js"></script>
-    <script type="text/javascript" src="/js/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
-    <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
-    <script type="text/javascript" src="/js/typeahead.js"></script>
     <script type="text/javascript" src="/js/custom.js"></script>
 
 </head>

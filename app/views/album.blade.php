@@ -152,22 +152,6 @@
             });
         });
 
-        $('#box').keyup(function(){
-            var valThis = $(this).val().toLowerCase();
-            $('.navList>a').each(function(){
-                var text = $(this).text().toLowerCase();
-                (text.indexOf(valThis) == 0) ? $(this).show() : $(this).hide();
-            });
-        });
-
-
-        $('#focusedInput').typeahead([
-            {
-                name: 'planets',
-                local: $.parseJSON('{{$users->toJson();}}')
-            }
-        ]);
-
         $(".sideImage").click(function(e)
         {
             e.preventDefault();
@@ -268,25 +252,17 @@
                 </div>
                 <div id="lounge_actions" class="panel-body">
                     <div class="well bs-component">
-                        <form action="/album/{{$album->id}}" id="upload" class="form-horizontal">
-                            <fieldset>
-                                <div class="form-group ">
-                                    <div class="col-lg-12">
-                                        <input name="lounge" type="text" class="form-control" id="loungeInput" placeholder="Image Name">
-                                    </div>
+                        <form method="POST" action="/create-image/{{$album->id}}" id="upload" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="form-group ">
+                                <div class="col-lg-12">
+                                    <input name="lounge" type="text" class="form-control" id="loungeInput" placeholder="Image Name" />
                                 </div>
-                            </fieldset>
-                            <fieldset>
-                                <div id="drop">
-                                    Drop Here
+                                <div class="col-lg-12">
                                     <br>
-                                    <a>Browse</a>
-                                    <input type="file" name="upl" />
-                                    <ul>
-                                        <!-- The file uploads will be shown here -->
-                                    </ul>
+                                    <input id="upl" type="file" name="upl" />
+                                    <a href="#" id="createLounge" class="btn btn-primary">Submit</a>
                                 </div>
-                            </fieldset>
+                            </div>
                         </form>
                     </div>
                 </div>

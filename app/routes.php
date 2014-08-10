@@ -16,6 +16,7 @@ Route::group(array('before' => "auth"), function() {
     Route::get('/adduser/{albumId}', "HomeController@addUserPage");
     Route::get('/create-lounge', "HomeController@homePage");
     Route::post('/create-lounge', "HomeController@homePagePost");
+    Route::post('/create-image/{albumId}', "HomeController@createImagePost");
     Route::get('/wingle', "HomeController@winglePage");
     Route::get('/album/{albumId}', "HomeController@albumPage");
     Route::post('/album/{albumId}', "HomeController@albumPostPage");

@@ -71,10 +71,9 @@ class HomeController extends BaseController {
             $image->image = $filename;
 
             $image->save();
-
-            return Response::json(array("success" => true, "albumId" => "$insertedId", "image" => false));
+            return Redirect::to("/album/$insertedId");
         } else {
-            return Response::json(array("success" => false));
+            return Redirect::to("/create-lounge");
         }
     }
 
@@ -101,6 +100,33 @@ class HomeController extends BaseController {
             return Response::json(array("success" => true, "image" => true));
         } else {
             return Response::json(array("success" => false));
+        }
+    }
+
+    public function createImagePost($albumId)
+    {
+        $file = Input::file('upl');
+        $destinationPath = public_path() . '/uploads';
+
+        $filename =  time() . "_" . $file->getClientOriginalName() . "." . $file->getClientOriginalExtension();
+
+        $upload_success = Input::file('upl')->move($destinationPath, $filename);
+
+        if( $upload_success ) {
+
+            $image = new Image();
+
+            $image->name = Input::all()["lounge"];
+            $image->album_id = $albumId;
+            $image->user_id = Auth::user()->id;
+            $image->image = $filename;
+
+            $image->save();
+
+            return Redirect::to("/album/$albumId");
+        } else {
+
+            return Redirect::to("/album/$albumId");
         }
     }
 
