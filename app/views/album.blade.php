@@ -215,6 +215,20 @@
             }
         });
 
+        $('#textSearch').keyup(function() {
+            searchTerm = $(this).val();
+            $(".textToFilter").each(function(index, element){
+                if($(element).text().indexOf(searchTerm) == -1)
+                {
+                    $(element).hide();
+                }
+                else
+                {
+                    $(element).show();
+                }
+            });
+        });
+
     });
 </script>
 <div class="page-header">
@@ -299,7 +313,12 @@
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Friends in Lounge</strong><br>@if($ownsLounge)<a href="/remove_album/{{$album->id}}" >Delete Lounge</a>@endif</h3>
+                    <h3 class="panel-title"><strong>Friends in Lounge</strong><br><br>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">@</span>
+                            <input id="textSearch" type="text" class="form-control " placeholder="Username">
+                        </div>
+                    </h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -308,27 +327,30 @@
                                 @if($ownsLounge)
                                     @if(in_array($user->id, $inGroup))
                                     <div class="col-xs-6 col-md-4">
-                                        <a style="overflow: hidden;" href="/remove_user?user_id={{$user->id}}&album_id={{$album->id}}" title="{{$user->name}} {{$user->surname}} " data-current="0" class="removeUser thumbnail">
+                                        <a style="overflow: hidden;" href="/remove_user?user_id={{$user->id}}&album_id={{$album->id}}" title="{{$user->name}} {{$user->surname}} " data-current="0" class="textToFilter removeUser thumbnail">
                                             <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
-                                            {{$user->name}} {{$user->surname}} <br>Remove
+                                            {{$user->name}} {{$user->surname}}<br>Remove
                                         </a>
                                     </div>
                                     @else
                                         <div class="col-xs-6 col-md-4">
-                                            <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" onclick="function(e){e.preventDefault}" class="thumbnail addUser">
+                                            <a style="overflow: hidden;" href="/adduser/{{$album->id}}?userId={{$user->id}}" onclick="function(e){e.preventDefault}" class="textToFilter thumbnail addUser">
                                                 <img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
-                                                {{$user->name}} {{$user->surname}} <br>Add
+                                                {{$user->name}} {{$user->surname}}<br>Add
                                             </a>
                                         </div>
                                     @endif
                                 @else
                                     <div class="col-xs-6 col-md-4">
-                                        <a style="overflow: hidden;" class="thumbnail"><img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="..."></a>
+                                        <a style="overflow: hidden;" class="thumbnail textToFilter"><img style="height: 60px; width: 60px" src="/uploads/{{$user->image}}" data-src="holder.js/100%x180" alt="...">
+                                           {{$user->name}} {{$user->surname}}
+                                        </a>
                                     </div>
                                 @endif
                             @endif
                         @endforeach
                     </div>
+                    @if($ownsLounge)<a href="/remove_album/{{$album->id}}" >Delete Lounge</a>@endif
                 </div>
             </div>
         </div>

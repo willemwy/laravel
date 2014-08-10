@@ -254,10 +254,6 @@ class HomeController extends BaseController {
             // fetch user profile
             $userProfile = $provider->getUserProfile();
 
-            //$provider->logout();
-
-            //var_dump($userProfile);die();
-
             $userEmails = User::where("fb_id", "=", $userProfile->identifier)->get();
 
             if(count($userEmails) == 0)
@@ -282,7 +278,7 @@ class HomeController extends BaseController {
 
                 $userCookie = Cookie::make("user", serialize($user), 3600);
                 //Redirect to home page
-                return Redirect::to("/")->withCookie($userCookie);
+                return Redirect::to("/create-lounge")->withCookie($userCookie);
             }
             else
             {

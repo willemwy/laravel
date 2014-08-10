@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Wingle | The image Rating App that keeps things fun. Always.</title>
+    <title>Wingle | The Best image rating app</title>
     <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
     <link rel="stylesheet" href="/css/bootstrap.css" />
     <link rel="stylesheet" href="/css/flexslider.css" />
