@@ -220,9 +220,8 @@
             $(element).parent().hide();
         });
 
-        $('#textSearch').click(function(e) {
-            e.preventDefault();
-            searchTerm = $("#searchTerm").val().toLowerCase();
+        $('#textSearch').keyup(function() {
+            searchTerm = $(this).val().toLowerCase();
             $(".textToFilter").each(function(index, element){
                 if($(element).text().toLowerCase().indexOf(searchTerm) == -1)
                 {
@@ -320,11 +319,9 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>Friends in Lounge</strong><br><br>
-                        <div class="input-group">
-                            <input id="searchTerm" type="text" class="form-control">
-                              <span class="input-group-btn">
-                                <button class="btn btn-default" id="textSearch" type="button">Go!</button>
-                              </span>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">@</span>
+                            <input id="textSearch" type="text" class="form-control " placeholder="Username">
                         </div>
                     </h3>
                 </div>
