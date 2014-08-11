@@ -220,7 +220,8 @@
             $(element).parent().hide();
         });
 
-        $('#textSearch').click(function() {
+        $('#textSearch').click(function(e) {
+            e.preventDefault();
             searchTerm = $("#searchTerm").val().toLowerCase();
             $(".textToFilter").each(function(index, element){
                 if($(element).text().toLowerCase().indexOf(searchTerm) == -1)
