@@ -221,9 +221,9 @@
         });
 
         $('#textSearch').keyup(function() {
-            searchTerm = $(this).val();
+            searchTerm = $(this).val().toLowerCase();
             $(".textToFilter").each(function(index, element){
-                if($(element).text().indexOf(searchTerm) == -1)
+                if($(element).text().toLowerCase().indexOf(searchTerm) == -1)
                 {
                     $(element).parent().hide();
                 }
