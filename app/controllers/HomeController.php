@@ -168,7 +168,6 @@ class HomeController extends BaseController {
 
     public function AlbumPage($albumId)
     {
-        //sleep(20);
         $showLounges = Input::get("showLounges");
 
         $filters = array(
@@ -334,10 +333,19 @@ class HomeController extends BaseController {
     public function addUserPage($albumId)
     {
         $userId = Input::get("userId");
-        $albumUser = new UserAlbum();
-        $albumUser->user_id = $userId;
-        $albumUser->album_id = $albumId;
-        $albumUser->save();
+        $userAlbum = UserAlbum::where("user_id", "=", $userId)->where("album_id", "=", $albumId)->first();
+
+        if(empty($userAlbum))
+        {
+            $albumUser = new UserAlbum();
+            $albumUser->user_id = $userId;
+            $albumUser->album_id = $albumId;
+            $albumUser->save();
+        }
+        else{
+            $userAlbum->removed = 0;
+            $userAlbum->save();
+        }
         return Response::json(array("success" => true));
     }
 

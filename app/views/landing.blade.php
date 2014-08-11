@@ -71,7 +71,7 @@
             <div class="col-lg-4 text-center">
                 <div class="service-item">
                     <i class="service-icon fa fa-desktop"></i>
-                    <h4>Be Cool</h4>
+                    <h4>Have Fun</h4>
                 </div>
             </div>
         </div>
