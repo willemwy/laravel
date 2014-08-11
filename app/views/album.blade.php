@@ -250,8 +250,8 @@
                         <div class="row">
                             @foreach($albums AS $album_row)
                             <div class="col-xs-6 col-md-4">
-                                <a style="overflow: hidden;" href="/album/{{$album->id}}" title="View {{$album->name}}" class="thumbnail">
-                                    <img style="height: 60px; width: 60px" src="/uploads/{{$album->image}}" data-src="holder.js/100%x180" alt="...">
+                                <a style="overflow: hidden;" href="/album/{{$album_row->id}}" title="View {{$album_row->name}}" class="thumbnail">
+                                    <img style="height: 60px; width: 60px" src="/uploads/{{$album_row->image}}" data-src="holder.js/100%x180" alt="...">
                                     {{$album_row->name}}
                                 </a>
                             </div>
